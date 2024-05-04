@@ -10,8 +10,8 @@ RUN npm run build
 # Stage 2: Serve the app with Nginx
 FROM nginx:stable-alpine
 COPY --from=build /app/build /usr/share/nginx/html
-COPY /home/semtle/ssl/domain.crt /etc/nginx/domain.crt
-COPY /home/semtle/ssl/domain.key /etc/nginx/domain.key
+COPY --from=build /app/build/domain.crt /etc/nginx/domain.crt
+COPY --from=build /app/build/domain.key /etc/nginx/domain.key
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
