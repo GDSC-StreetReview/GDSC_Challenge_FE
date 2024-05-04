@@ -14,6 +14,7 @@ const MainPage = () => {
         isOpenSideBar={isOpenSideBar}
         handleIsOpenSideBar={handleIsOpenSideBar}
       /> */}
+      {/* <BoardItem /> */}
       <MainToggle />
     </>
   );
