@@ -1,0 +1,19 @@
+.top-side-toggle-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .top-side-toggle-icon {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 5.75rem;
+      height: 2.5rem;
+      border-radius: 1.25rem;
+      margin-bottom: 1.06rem;
+      cursor: pointer;
+  }
+  .top-side-toggle-icon-text {
+    text-align: center;
+    margin-left: 0.4rem;
+  }
+  

@@ -2,8 +2,9 @@ import { useState } from "react";
 import { CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
 import { IMAGES } from "../../../constants/images";
 import { RequestStreetData } from "../../../constants/interface";
-import MainSwipeContent from "../../Main/MainSwipe/MainSwipe";
-import * as W from "./styleCustomOverlay";
+
+import { Text } from "src/components/Atom/text/Text";
+import MainSwipeContent from "src/components/Main/components/MainSwipe";
 interface KakaoMapCustomOverlayProps {
   item: RequestStreetData;
   selectedMarker: RequestStreetData | null;
@@ -42,38 +43,49 @@ export const KakaoMapStreetCustomMarker = ({
           position={{ lat: item.x, lng: item.y }}
           clickable={true}
         >
-          <W.CustomOverlayBox>
+          <div className="custom-overlay-box">
             {/* 커스텀 오버레이 내용 */}
-            <W.CustomOverlayBoxCloseIcon onClick={onClose}>
+            <div className="custom-overlay-box-close" onClick={onClose}>
               X
-            </W.CustomOverlayBoxCloseIcon>
-            <W.CustomOverlayBoxTitleWrapper
-              className="overlay-content"
+            </div>
+            <div
+              className="custom-overlay-box-title-wrapper overlay-content"
               onClick={handleOpenStreetRivewList}
             >
-              <W.CustomOverlayBoxTitle>
+              <Text color="#89bbf1" fontSize="1rem" fontWeight="700">
                 {item.streetName}
-              </W.CustomOverlayBoxTitle>
-              <W.CustomOverlayBoxAddress>
+              </Text>
+              <Text color="#d9d9d9" fontSize="0.65rem" fontWeight="500">
                 {item.streetAddress}
-              </W.CustomOverlayBoxAddress>
-            </W.CustomOverlayBoxTitleWrapper>
+              </Text>
+            </div>
 
-            <W.CustomOverlayBoxIconWrapper onClick={handleOpenStreetRivewList}>
-              <W.CustomOverlayBoxIcon src={IMAGES.heartColor} alt="heart" />
+            <div
+              className="custom-overlay-box-icon-wrapper"
+              onClick={handleOpenStreetRivewList}
+            >
+              <img
+                className="custom-overlay-box-icon"
+                src={IMAGES.heartColor}
+                alt="heart"
+              />
               {item.likey}
-              <W.CustomOverlayBoxIcon src={IMAGES.commentBlack} alt="comment" />
+              <img
+                className="custom-overlay-box-icon"
+                src={IMAGES.commentBlack}
+                alt="comment"
+              />
               {item.reviewCount}
-            </W.CustomOverlayBoxIconWrapper>
+            </div>
 
-            <W.CustomOverlayBoxTagList>
+            <div className="custom-overlay-box-tag-list">
               {item.tagsList.map((tag, index) => (
-                <span key={index} style={{ marginRight: "0.1rem" }}>
-                  #{tag.value}
-                </span>
+                <div key={index} style={{ marginRight: "0.1rem" }}>
+                  <Text>#{tag.value}</Text>
+                </div>
               ))}
-            </W.CustomOverlayBoxTagList>
-          </W.CustomOverlayBox>
+            </div>
+          </div>
         </CustomOverlayMap>
       )}
       <MainSwipeContent

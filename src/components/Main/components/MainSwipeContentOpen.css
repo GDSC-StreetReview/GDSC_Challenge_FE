@@ -1,0 +1,60 @@
+.swipe-menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2.19rem;
+  margin-left: 2.69rem;
+  margin-right: 2.69rem;
+}
+.swipe-menu-wrapper-top {
+  display: flex;
+  align-items: center;
+}
+
+.swipe-menu-wrapper-top-image {
+  margin-right: 0.94rem;
+  width: 3.6875rem;
+  height: 3.6875rem;
+  background: #89bbf1;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swipe-menu-review-title-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  color: #89bbf1;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.swipe-menu-review-mapping-title {
+  color: #d9d9d9;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.swipe-menu-wrapper-bottom {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1.12rem 2.19rem;
+  margin-top: 1.12rem;
+}
+
+.swipe-menu-wrapper-bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 0.625rem;
+}

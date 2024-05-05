@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Coordinates } from "../constants/interface";
 
 // 좌표를 이용하여 행정동 주소 정보를 검색하는 함수 정의
 const useSearchAddressFromCoords = (
   coords: Coordinates | undefined
 ): string | null => {
-  const dispatch = useDispatch();
   const [address, setAAddress] = useState<string | null>(null);
 
   useEffect(() => {

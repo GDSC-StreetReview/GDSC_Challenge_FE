@@ -14,7 +14,7 @@ import {
 function KakaoMaps() {
   const location = useGeolocation();
   // const streetList = useGetStreetList();
-  const streetList = useGetAllStreetList();
+  const { streetAllList } = useGetAllStreetList();
   const [map, setMap] = useState<MapState>(); // map 상태를 useState를 통해 관리
   const address = useSearchAddressFromCoords(map?.center);
   const dispatch = useDispatch();
@@ -41,14 +41,14 @@ function KakaoMaps() {
   }, [location]);
   const [selectedMarker, setSelectedMarker] =
     useState<RequestStreetData | null>(null);
-    const handleMarkerClick = (item: RequestStreetData) => {
-      setSelectedMarker(item);
-    };
-  
-    const handleCloseMarker = () => {
-      setSelectedMarker(null);
+  const handleMarkerClick = (item: RequestStreetData) => {
+    setSelectedMarker(item);
   };
-  
+
+  const handleCloseMarker = () => {
+    setSelectedMarker(null);
+  };
+
   return (
     <div style={{ width: "100%", height: "100vh" }}>
       {map && (
@@ -62,7 +62,7 @@ function KakaoMaps() {
           minLevel={4} //지도 축소 최댓값
         >
           {/* 사용자의 현재 위치를 마커로 표시 */}
-          {streetList.map((item, idx) => (
+          {streetAllList.map((item, idx) => (
             <>
               <KakaoMapStreetCustomMarker
                 key={idx}

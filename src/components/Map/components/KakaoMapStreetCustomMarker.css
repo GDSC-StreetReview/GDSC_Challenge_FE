@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const CustomOverlayBox = styled.div`
+.custom-overlay-box {
   padding: 0 1rem 1rem 1rem;
   position: absolute;
   bottom: 100%;
@@ -12,48 +10,37 @@ export const CustomOverlayBox = styled.div`
   background-color: #fff;
   border-radius: 0.625rem;
   border: 1px solid #378ce7;
-`;
-export const CustomOverlayBoxCloseIcon = styled.div`
+}
+.custom-overlay-box-close {
   display: flex;
   justify-content: flex-end;
   margin-right: -0.4rem;
-`;
-export const CustomOverlayBoxTitleWrapper = styled.div`
+}
+.custom-overlay-box-title-wrapper {
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-export const CustomOverlayBoxTitle = styled.div`
-  color: #89bbf1;
-  font-size: 1rem;
-  font-weight: 700;
-`;
-export const CustomOverlayBoxAddress = styled.div`
-  color: #d9d9d9;
-  font-size: 0.65rem;
-  font-weight: 500;
-`;
-
-export const CustomOverlayBoxIconWrapper = styled.div`
+}
+.custom-overlay-box-icon-wrapper {
   margin-left: auto;
   color: #000;
   font-size: 0.65rem;
   font-weight: 500;
   display: flex;
   align-items: center;
-`;
-export const CustomOverlayBoxIcon = styled.img`
+}
+.custom-overlay-box-icon {
   width: 0.75rem;
   height: 0.75rem;
   margin-left: 0.5rem;
   margin-right: 0.3rem;
-`;
-export const CustomOverlayBoxTagList = styled.div`
+}
+.custom-overlay-box-tag-list {
   margin-top: 0.2rem;
   color: #89bbf1;
   font-size: 0.65rem;
   font-weight: 500;
   display: flex;
   align-items: center;
-`;
+}
