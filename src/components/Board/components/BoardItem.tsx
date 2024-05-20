@@ -1,9 +1,9 @@
 import { BackgroundImg } from "src/components/Atom/backgroundImg/BackgroundImg";
 import { Text } from "src/components/Atom/text/Text";
+import { IMAGES } from "src/constants/images";
+import { RequestStreetData, ReviewDetail } from "src/constants/interface";
 import { TruncatedContent } from "src/utils/TruncatedContent";
 import { ReactComponent as IconHeart } from "../../../assets/images/ic_heartWhite.svg";
-import { IMAGES } from "../../../constants/images";
-import { textArr } from "../constants/Boardtst";
 import { MAX_CONTENT_LENGTH } from "../constants/Constants";
 import "./BoardItem.css";
 const IconStyle: React.CSSProperties = {
@@ -15,25 +15,35 @@ const lacationIconStyle: React.CSSProperties = {
   height: "1.25rem",
   marginRight: "0.19rem",
 };
-
-const BoardItem = () => {
+export interface contentItem {
+  reviewItem: ReviewDetail;
+  streetItem: RequestStreetData;
+  onClick?: () => void;
+  onClose?: () => void;
+}
+const BoardItem = ({
+  streetItem,
+  reviewItem,
+  onClick,
+  onClose,
+}: contentItem) => {
   const content = TruncatedContent({
     maxContentLength: MAX_CONTENT_LENGTH,
-    content: textArr.content,
+    content: reviewItem.content,
   });
-
   return (
-    <div className="board-item-backgournd">
+    <>
       <BackgroundImg
-        img={IMAGES.groupColorBlue}
+        img={reviewItem.photoList?.[0] || IMAGES.basicColorImg}
         className="board-item-back-box"
       >
+        <div className="board-item-back-box-front"/>
         <div className="board-item-top">
-          <img src={IMAGES.moreLeft} alt="more" />
+          <img src={IMAGES.moreLeft} alt="back" onClick={onClose} />
         </div>
         <div className="board-item-bottom">
-          <div className="board-item-content-box">
-            <Text fontWeight="700">{textArr.title}</Text>
+          <div className="board-item-content-box" onClick={onClick}>
+            <Text fontWeight="700">{streetItem.streetName}</Text>
             <Text fontWeight="400">{content}</Text>
           </div>
           <div className="board-item-menu-box">
@@ -44,9 +54,9 @@ const BoardItem = () => {
         </div>
         <div className="board-item-box-bottom-info">
           <div className="board-item-tag-box">
-            {textArr.tag.map((idx, item) => (
+            {streetItem.tagsList.map((item, idx) => (
               <Text key={idx} fontWeight="400">
-                #{item}
+                #{item.value}
               </Text>
             ))}
           </div>
@@ -56,25 +66,24 @@ const BoardItem = () => {
               alt="location"
               style={lacationIconStyle}
             />
-            <Text fontWeight="400">{textArr.address}</Text>
+            <Text fontWeight="400">{streetItem.streetAddress}</Text>
           </div>
           <div className="board-item-user-info-box">
             <BackgroundImg
-              img={IMAGES.myCommentWhite}
-              className="board-item-back-box"
+              img={reviewItem.member.picture}
+              className="board-item-user-info-profile "
             />
-
             <Text
               fontSize="1.25rem"
               fontWeight="700"
-              className="board-item.user-info-name"
+              className="board-item-user-info-name"
             >
-              rkdgml
+              {reviewItem.member.nickName}
             </Text>
           </div>
         </div>
       </BackgroundImg>
-    </div>
+    </>
   );
 };
 export default BoardItem;

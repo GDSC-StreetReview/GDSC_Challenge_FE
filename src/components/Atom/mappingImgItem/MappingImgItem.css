@@ -1,0 +1,16 @@
+.mapping__img__item__img {
+  position: relative;
+}
+.mapping__img__item__img img {
+  width: 15.125rem;
+  height: 15.125rem;
+  object-fit: cover;
+  border-radius: 0.625rem;
+}
+.mapping__img__item__remove img {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+}

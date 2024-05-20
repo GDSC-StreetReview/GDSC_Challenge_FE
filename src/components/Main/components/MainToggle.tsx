@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainToggleIcon from "src/components/Atom/mainToggleIcon/MainToggleIcon";
 import TopSideToggle from "src/components/Atom/topSideToggle/TopSideToggle";
 import { IMAGES } from "src/constants/images";
 import handleLogin from "../../Login/handleLogin";
 import "./MainToggle.css";
+
 const MainToggle = () => {
-  // const accessToken = localStorage.getItem("token");
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const accessToken = localStorage.getItem("token");
+  const [isLogin, setIsLogin] = useState<boolean>(false);
   const [clickMenu, setClickMenu] = useState<boolean>(false);
   let isClick = clickMenu && !isLogin;
-
   const handleMenuClick = () => {
     setClickMenu((prev) => !prev);
   };
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     setIsLogin(true);
-  //   } else {
-  //     setIsLogin(false);
-  //   }
-  // }, [accessToken]);
+  useEffect(() => {
+    if (accessToken) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [accessToken]);
 
   const instyle: React.CSSProperties = {
     width: isClick ? "13.75rem" : "3.375rem",
