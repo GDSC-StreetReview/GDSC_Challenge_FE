@@ -1,21 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { RequestStreetData } from "../constants/interface";
+import commonApis from "../utils/commonApis";
 
 const useGetStreetList = () => {
-  const accessToken = localStorage.getItem("token");
   const [streetList, setStreetList] = useState<RequestStreetData[]>([]);
 
   useEffect(() => {
     const fetchStreetData = async () => {
       try {
-        const res = await axios.post(
-          "/street/near/view",
-          {},
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        );
+        const res = await commonApis.post("/street/near/view");
         setStreetList(res.data.data);
       } catch (error) {
         console.log("Street data error:", error);
@@ -23,7 +16,7 @@ const useGetStreetList = () => {
     };
 
     fetchStreetData();
-  }, [accessToken]);
+  }, []);
 
   return streetList;
 };

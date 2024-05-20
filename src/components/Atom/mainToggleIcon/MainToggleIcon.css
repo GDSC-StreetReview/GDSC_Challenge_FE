@@ -1,0 +1,13 @@
+.google-login-button {
+  margin-left: 0.56rem;
+  margin-right: 1rem;
+  width: 70%;
+  border-radius: 2.5rem;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.08),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.17);
+}
+.menu-circle-img-style {
+  width: 1.26563rem;
+  height: 1.26563rem;
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+.swipe-menu-wrapper-bottom-wrapper {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+.swipe-menu-wrapper-bottom-content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  -webkit-transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
+  opacity: 0;
+}
+.swipe-menu-wrapper-bottom-content:hover {
+  border-radius: 0.625rem;
+  background: rgba(0, 0, 0, 0.39);
+  opacity: 1;
+}
+.swipe-menu-wrapper-bottom-user-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.31rem;
+}
+.swipe-menu-wrapper-bottom-user-info img {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.board-item-backgournd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}

@@ -45,11 +45,8 @@ export interface GetPostListProps {
   reviews: Review[];
 }
 
-export interface Tag {
-  value: string;
-}
 export interface Review {
-  id: number;
+  reviewId: number;
   streetName: string;
   streetAddress: string;
   reviewCount: number;
@@ -81,6 +78,9 @@ export interface RequestStreet {
 }
 
 // 상세정보
+export interface Tag {
+  value: string;
+}
 export interface RequestStreetData {
   streetName: string;
   streetAddress: string;
@@ -93,10 +93,13 @@ export interface RequestStreetData {
 }
 
 export interface ReviewDetail {
+  reviewId: number;
+  reviewX: number;
+  reviewY: number;
   content: string;
-  likey: number;
-  createdDate: string;
-  updatedDate: string;
+  likey?: number;
+  createdDate?: string;
+  updatedDate?: string;
   member: {
     memberId: number;
     providerId: string;
@@ -104,7 +107,7 @@ export interface ReviewDetail {
     nickName: string;
     picture: string;
   };
-  photoList: string[];
+  photoList?: string[];
 }
 
 export interface ImgPorpLocationState {
@@ -114,4 +117,18 @@ export interface ImgPorpLocationState {
 export interface MapState {
   center: { lat: number; lng: number };
   level: number;
+}
+
+export interface Comment {
+  replyId: number;
+  replyContent: string;
+  photoList: string[];
+  replyLikey: number;
+  member: {
+    memberId: number;
+    nickName: string;
+    picture: string;
+  };
+  createDate: string;
+  updateDate: string;
 }

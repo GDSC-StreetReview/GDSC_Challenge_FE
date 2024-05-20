@@ -1,11 +1,11 @@
-import { useState } from "react";
-import MainToggle from "../../components/Main/MainToggle/MainToggle";
-import TopSearchBar from "../../components/Main/TopSearchBar/TopSearchBar";
+import MainToggle from "src/components/Main/components/MainToggle";
+import TopSearchBar from "src/components/Main/components/TopSearchBar";
+
 const MainPage = () => {
-  const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
-  const handleIsOpenSideBar = () => {
-    setIsOpenSideBar((prer) => !prer);
-  };
+  // const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
+  // const handleIsOpenSideBar = () => {
+  //   setIsOpenSideBar((prer) => !prer);
+  // };
   return (
     <>
       <TopSearchBar />

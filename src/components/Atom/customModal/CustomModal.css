@@ -1,0 +1,50 @@
+.custom-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.custom-modal-box {
+  width: 15.875rem;
+  height: 8.1875rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+.custom-modal-title {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.custom-modal-box-buttom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.custom-modal-box-yes {
+  background: #ea4335;
+  height: 2.5625rem;
+  width: 50%;
+  border-radius: 0 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-modal-box-no {
+  background: #fff;
+  height: 2.5625rem;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 1.25rem 0;
+}
