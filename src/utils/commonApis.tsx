@@ -2,20 +2,19 @@ import axios from "axios";
 
 const commonApis = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
-    timeout: 120000,
-    withCredentials: true
+    // timeout: 120000,
 });
 
 commonApis.interceptors.request.use(
-    async (config) => {
-        const loginStateValue = localStorage.getItem('accessToken');
-        // console.log('commonApi: ', loginStateValue);
-        if (loginStateValue) {
-            config.headers['Authorization'] = `Bearer ${loginStateValue}`;
+    (config) => {
+        const accessToken = localStorage.getItem("token");
+        console.log('commonApi: ', accessToken);
+        if (accessToken) {
+            config.headers.Authorization = `Bearer ${accessToken}`;
         } 
         return config;
     },
-    error => {
+    (error) => {
         return Promise.reject(error);
     }
 );
