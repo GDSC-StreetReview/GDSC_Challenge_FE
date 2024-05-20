@@ -1,0 +1,109 @@
+.write-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.write-modal-box {
+  width: 28.875rem;
+  height: 37.4375rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  padding: 1.2rem;
+}
+.write-modal-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.write-modal-top span {
+  margin-left: auto;
+}
+.write-modal-top img {
+  width: 0.90781rem;
+  height: 0.90056rem;
+  margin-left: auto;
+}
+
+.write-modal-img-input-wrapper {
+  margin-top: 0.8rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.write-modal-img-input-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+.write-modal-maping-img {
+  display: flex;
+  margin: 0 0.6rem;
+}
+.write-modal-img-input-box::-webkit-scrollbar {
+  display: none;
+}
+.write-modal-img-input img {
+  width: 15.125rem;
+  height: 15.125rem;
+  border-radius: 0.625rem;
+  background: #dff5ff;
+}
+
+.write-modal-summit-button {
+  width: 5.3125rem;
+  height: 1.875rem;
+  flex-shrink: 0;
+  border-radius: 0.625rem;
+  background: #dff5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.write-modal-content {
+  margin-bottom: 0.75rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border-bottom: 1px solid #000;
+}
+.write-modal-content input,
+textarea {
+  margin-top: 0.44rem;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+
+  &::focus {
+    outline: none;
+    border: none;
+  }
+  &::placeholder {
+    color: #d9d9d9;
+    font-family: "Plus Jakarta Sans";
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+.write-modal-tag-list {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
