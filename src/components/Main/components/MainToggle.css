@@ -1,0 +1,24 @@
+.menu-container {
+  position: absolute;
+  right: 2.62rem;
+  top: 2.31rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.menu-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.19rem;
+}
+
+.menu-login-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 2.5rem;
+}

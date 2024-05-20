@@ -1,7 +1,8 @@
 const PagePath = {
   Home: "/",
   // 거리요청
-  Requestpage: "/request",
+  Request: "request",
+  logout: "logout",
   // 거리 상세보기
   StreetDetail: "/review",
   // 리뷰작성페이지

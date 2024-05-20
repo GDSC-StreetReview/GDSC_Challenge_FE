@@ -20,7 +20,7 @@ const RedirectionPage = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            // "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+            "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
           },
         }
       );
@@ -35,7 +35,6 @@ const RedirectionPage = () => {
       }
     } catch (error) {
       console.log("error : ", error);
-      window.alert("TLqkf");
       navigate("/");
     } finally {
       setLoading(false);
