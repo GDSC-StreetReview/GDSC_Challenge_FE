@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
-import { IMAGES } from "../../../constants/images";
-import { RequestStreetData } from "../../../constants/interface";
-
 import { Text } from "src/components/Atom/text/Text";
 import MainSwipeContent from "src/components/Main/components/MainSwipe";
+import { IMAGES } from "../../../constants/images";
+import { RequestStreetData } from "../../../constants/interface";
+import "./KakaoMapStreetCustomMarker.css";
 interface KakaoMapCustomOverlayProps {
   item: RequestStreetData;
   selectedMarker: RequestStreetData | null;
@@ -23,6 +23,11 @@ export const KakaoMapStreetCustomMarker = ({
     setIsOpenSideBar((prer) => !prer);
     console.log("dkddkd");
   };
+  const bottomSwipeStyle: React.CSSProperties = {
+    opacity: isOpenSideBar ? 1 : 0,
+    transition: "opacity 0.1s ease",
+    // display: isOpenSideBar ? "block" : "none",
+  };
   return (
     <>
       <MapMarker
@@ -32,7 +37,7 @@ export const KakaoMapStreetCustomMarker = ({
           src:
             item.photoList?.[0] ??
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // null | undefined방지
-          size: { width: 24, height: 35 },
+            size: { width: 24, height: 35 },
         }}
         zIndex={1}
         clickable={true}
@@ -45,8 +50,15 @@ export const KakaoMapStreetCustomMarker = ({
         >
           <div className="custom-overlay-box">
             {/* 커스텀 오버레이 내용 */}
-            <div className="custom-overlay-box-close" onClick={onClose}>
-              X
+            <div onClick={onClose}>
+              <Text
+                color="#89bbf1"
+                fontSize="1rem"
+                fontWeight="700"
+                className="custom-overlay-box-close"
+              >
+                x
+              </Text>
             </div>
             <div
               className="custom-overlay-box-title-wrapper overlay-content"
@@ -54,9 +66,6 @@ export const KakaoMapStreetCustomMarker = ({
             >
               <Text color="#89bbf1" fontSize="1rem" fontWeight="700">
                 {item.streetName}
-              </Text>
-              <Text color="#d9d9d9" fontSize="0.65rem" fontWeight="500">
-                {item.streetAddress}
               </Text>
             </div>
 
@@ -81,17 +90,20 @@ export const KakaoMapStreetCustomMarker = ({
             <div className="custom-overlay-box-tag-list">
               {item.tagsList.map((tag, index) => (
                 <div key={index} style={{ marginRight: "0.1rem" }}>
-                  <Text>#{tag.value}</Text>
+                  <Text color="#378CE7">#{tag.value}</Text>
                 </div>
               ))}
             </div>
           </div>
         </CustomOverlayMap>
       )}
-      <MainSwipeContent
-        isOpenSideBar={isOpenSideBar}
-        handleIsOpenSideBar={handleOpenStreetRivewList}
-      />
+      <div style={bottomSwipeStyle}>
+        <MainSwipeContent
+          item={item}
+          isOpenSideBar={isOpenSideBar}
+          handleIsOpenSideBar={handleOpenStreetRivewList}
+        />
+      </div>
     </>
   );
 };

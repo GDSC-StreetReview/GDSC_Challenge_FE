@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import { useDispatch } from "react-redux";
+import useGetAllStreetList from "src/hook/useGetAllStreetList";
 import { MapState, RequestStreetData } from "../../constants/interface";
 import useGeolocation from "../../hook/useGeolocation";
-import useGetAllStreetList from "../../hook/useGetAllStreetList";
 import useSearchAddressFromCoords from "../../hook/useSearchAddressFromCoords";
-import { setAddress } from "../../redux/Mapactions";
+import { setAddress, setCoordinates } from "../../redux/Mapactions";
 import {
   KakaoMapCustomCurrentPosition,
   KakaoMapStreetCustomMarker,
 } from "./components/index";
+
 // 사용자의 위치를 기본으로 하는 카카오 맵
 function KakaoMaps() {
   const location = useGeolocation();
@@ -18,6 +19,7 @@ function KakaoMaps() {
   const [map, setMap] = useState<MapState>(); // map 상태를 useState를 통해 관리
   const address = useSearchAddressFromCoords(map?.center);
   const dispatch = useDispatch();
+  console.log(map?.center);
 
   useEffect(() => {
     if (
@@ -32,7 +34,9 @@ function KakaoMaps() {
         },
         level: 2,
       });
-      console.log(map);
+      if (map) {
+        dispatch(setCoordinates(map.center));
+      }
       if (address) {
         dispatch(setAddress(address));
       }
@@ -61,7 +65,7 @@ function KakaoMaps() {
           maxLevel={1} // 지도 확대 최댓값
           minLevel={4} //지도 축소 최댓값
         >
-          {/* 사용자의 현재 위치를 마커로 표시 */}
+          {/* 주변 거리를 마커로 표시 */}
           {streetAllList.map((item, idx) => (
             <>
               <KakaoMapStreetCustomMarker
