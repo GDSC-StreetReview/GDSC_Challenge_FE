@@ -1,0 +1,19 @@
+.comment-box-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.comment-box-user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+.comment-box-user-profile {
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+}
+.comment-box-user-name {
+  text-align: center;
+  margin-left: 0.5rem;
+}
