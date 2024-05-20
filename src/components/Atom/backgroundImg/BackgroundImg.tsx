@@ -2,16 +2,22 @@ import { ReactNode } from "react";
 
 export interface BackgroundImgProps {
   children?: ReactNode;
-  img: any;
+  img: string;
   className?: string;
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export function BackgroundImg({ children, className = "", img, onClick }: BackgroundImgProps) {
+export function BackgroundImg({
+  children,
+  className = "",
+  img,
+  onClick,
+}: BackgroundImgProps) {
+  console.log("iiiiii",img);
   return (
     <div
       style={{
-        background: `url(${img}) lightgray 50% / cover
+        background: `url(${encodeURI(img)}) lightgray 50% / cover
   no-repeat`,
       }}
       className={className}

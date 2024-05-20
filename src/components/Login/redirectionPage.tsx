@@ -35,7 +35,6 @@ const RedirectionPage = () => {
       }
     } catch (error) {
       console.log("error : ", error);
-      window.alert("TLqkf");
       navigate("/");
     } finally {
       setLoading(false);
