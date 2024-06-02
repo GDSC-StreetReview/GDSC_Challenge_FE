@@ -1,0 +1,49 @@
+.mypage-item-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-top: 0.5rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(90deg, #89bbf1 0%, #dff5ff 100%);
+  padding: 1rem;
+}
+.mypage-item-box-left {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+}
+
+.mypage-item-box-writer-box {
+  margin-right: 0.3rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.mypage-item-box-writer-box img {
+  margin-right: 0.2rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.mypage-item-box-left-bottom {
+  align-items: center;
+  display: flex;
+  margin-top: 0.3rem;
+}
+.mypage-item-box-comment-box {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.mypage-item-box-comment-box img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+}
+.mypage-item-box-img-box img {
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  display: flex;
+}
