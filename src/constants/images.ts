@@ -1,6 +1,8 @@
 export const IMAGES = {
   mylocation: require("src/assets/images/ic_my_location.png"),
   //Logo
+  SecessionIcon: require("src/assets/images/ic_Secession.png"),
+  homeIcon: require("src/assets/images/ic_home.png"),
   logoTripview: require("src/assets/images/ic_logo_TRIPVIEW.png"),
   searchIcon: require("src/assets/images/ic_search.png"),
   //Login
