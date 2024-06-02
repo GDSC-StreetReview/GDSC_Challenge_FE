@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import { useDispatch } from "react-redux";
 import useGetAllStreetList from "src/hook/useGetAllStreetList";
+import { setSelectedMarker } from "src/store/selectedItemList/SelectedItemListAction";
 import { MapState, RequestStreetData } from "../../constants/interface";
 import useGeolocation from "../../hook/useGeolocation";
 import useSearchAddressFromCoords from "../../hook/useSearchAddressFromCoords";
@@ -19,8 +20,6 @@ function KakaoMaps() {
   const [map, setMap] = useState<MapState>(); // map 상태를 useState를 통해 관리
   const address = useSearchAddressFromCoords(map?.center);
   const dispatch = useDispatch();
-  console.log(map?.center);
-
   useEffect(() => {
     if (
       location.coordinates !== undefined &&
@@ -43,14 +42,8 @@ function KakaoMaps() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-  const [selectedMarker, setSelectedMarker] =
-    useState<RequestStreetData | null>(null);
   const handleMarkerClick = (item: RequestStreetData) => {
-    setSelectedMarker(item);
-  };
-
-  const handleCloseMarker = () => {
-    setSelectedMarker(null);
+    dispatch(setSelectedMarker(item));
   };
 
   return (
@@ -71,9 +64,7 @@ function KakaoMaps() {
               <KakaoMapStreetCustomMarker
                 key={idx}
                 item={item}
-                selectedMarker={selectedMarker}
                 onClick={() => handleMarkerClick(item)}
-                onClose={() => handleCloseMarker()}
               />
             </>
           ))}
