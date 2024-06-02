@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { BackgroundImg } from "src/components/Atom/backgroundImg/BackgroundImg";
 import { Text } from "src/components/Atom/text/Text";
 import { IMAGES } from "src/constants/images";
 import { RequestStreetData, ReviewDetail } from "src/constants/interface";
+import useGetUserLikeToReview from "src/hook/useGetUserLikeToReview";
+import { useLikeReview } from "src/hook/useLikeReview";
 import { TruncatedContent } from "src/utils/TruncatedContent";
 import { ReactComponent as IconHeart } from "../../../assets/images/ic_heartWhite.svg";
 import { MAX_CONTENT_LENGTH } from "../constants/Constants";
@@ -27,17 +30,27 @@ const BoardItem = ({
   onClick,
   onClose,
 }: contentItem) => {
+  const { like, getUserLikeToReview } = useGetUserLikeToReview();
   const content = TruncatedContent({
     maxContentLength: MAX_CONTENT_LENGTH,
     content: reviewItem.content,
   });
+  const { handleLikeReview } = useLikeReview();
+  const handleLikeClick = () => {
+    handleLikeReview(reviewItem.reviewId);
+  };
+  // getUserLikeToReview
+  useEffect(() => {
+    getUserLikeToReview(reviewItem.reviewId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <BackgroundImg
         img={reviewItem.photoList?.[0] || IMAGES.basicColorImg}
         className="board-item-back-box"
       >
-        <div className="board-item-back-box-front"/>
+        <div className="board-item-back-box-front" />
         <div className="board-item-top">
           <img src={IMAGES.moreLeft} alt="back" onClick={onClose} />
         </div>
@@ -47,7 +60,12 @@ const BoardItem = ({
             <Text fontWeight="400">{content}</Text>
           </div>
           <div className="board-item-menu-box">
-            <IconHeart fill="#DFF5FF" stroke="#DFF5FF" style={IconStyle} />
+            <IconHeart
+              fill={like ? "#DFF5FF" : "#FFF"}
+              stroke="#DFF5FF"
+              style={IconStyle}
+              onClick={handleLikeClick}
+            />
             <img src={IMAGES.addLocation} alt="add" style={IconStyle} />
             <img src={IMAGES.myCommentWhite} alt="comment" style={IconStyle} />
           </div>

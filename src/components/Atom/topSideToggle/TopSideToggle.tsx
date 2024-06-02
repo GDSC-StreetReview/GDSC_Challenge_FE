@@ -28,6 +28,9 @@ const TopSideToggle = () => {
   const handleCloseFetchStreet = () => {
     setOpenStreetModal(false);
   };
+  const handleMypage = () => {
+    navigate("/mypage");
+  };
   type TopSideToggleIconProp = {
     path: string;
     img: string;
@@ -53,7 +56,7 @@ const TopSideToggle = () => {
     const handleOnClick = () => {
       switch (path) {
         case PagePath.Mypage:
-          navigate(`/${path}`);
+          handleMypage();
           break;
         case PagePath.logout:
           logoutClick();
@@ -104,10 +107,7 @@ const TopSideToggle = () => {
         ))}
         {openLogoutModal && <LogoutModal onClose={handlelogoutClose} />}
         {openStreetModal && (
-          <WriteModal
-            writeTypeProp="STREET"
-            onClose={handleCloseFetchStreet}
-          />
+          <WriteModal writeTypeProp="STREET" onClose={handleCloseFetchStreet} />
         )}
       </div>
     </>

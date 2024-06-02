@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store/rootReducer";
 import { RequestStreetData } from "../constants/interface";
 import commonApis from "../utils/commonApis";
 
 const useGetAllStreetList = () => {
   const [loading, setLoading] = useState(true);
   const [streetAllList, setStreetAllList] = useState<RequestStreetData[]>([]);
-
+  const { isSwipe } = useSelector((state: RootState) => state.swipe);
   useEffect(() => {
     const fetchStreetData = async () => {
       try {
@@ -19,7 +21,7 @@ const useGetAllStreetList = () => {
     };
 
     fetchStreetData();
-  }, []);
+  }, [isSwipe]);
 
   return { streetAllList, loading };
 };

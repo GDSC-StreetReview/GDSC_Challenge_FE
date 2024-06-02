@@ -100,16 +100,16 @@ export interface ReviewDetail {
   likey?: number;
   createdDate?: string;
   updatedDate?: string;
-  member: {
-    memberId: number;
-    providerId: string;
-    email: string;
-    nickName: string;
-    picture: string;
-  };
+  member: Member;
   photoList?: string[];
 }
-
+export interface Member {
+  memberId: number;
+  providerId: string;
+  email: string;
+  nickName: string;
+  picture: string;
+}
 export interface ImgPorpLocationState {
   id: string;
 }

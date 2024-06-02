@@ -22,8 +22,10 @@ export const MainContentItem = ({ reviewItem, streetItem }: contentItem) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDetail, setIsDetail] = useState(false);
   const handleOnClick = () => {
-    dispatch(openItemAction(targetId));
-    setIsOpen(true);
+    if (reviewItem.content !== "삭제된 리뷰입니다.") {
+      dispatch(openItemAction(targetId));
+      setIsOpen(true);
+    } 
   };
   const handleOnClose = () => {
     setIsOpen(false);
@@ -34,7 +36,11 @@ export const MainContentItem = ({ reviewItem, streetItem }: contentItem) => {
     setIsDetail(true);
     dispatch(openItemAction(targetId));
   };
-
+  const handleBackgroundClick = (e:any) => {
+    if (e.target === e.currentTarget) {
+      handleOnClose();
+    }
+  };
   return (
     <>
       <BackgroundImg
@@ -46,9 +52,6 @@ export const MainContentItem = ({ reviewItem, streetItem }: contentItem) => {
           <Text color="#000" fontSize="0.9375rem">
             {reviewItem.content}
           </Text>
-          <Text color="#000" fontSize="0.9375rem">
-            {reviewItem.reviewId}
-          </Text>
         </div>
         <div className="swipe-menu-wrapper-bottom-user-info">
           <Text color="#000" fontSize="0.75rem">
@@ -58,7 +61,7 @@ export const MainContentItem = ({ reviewItem, streetItem }: contentItem) => {
         </div>
       </BackgroundImg>
       {isOpen && (
-        <div className="board-item-backgournd">
+        <div className="board-item-backgournd" onClick={handleBackgroundClick}>
           {!isDetail ? (
             <BoardItem
               streetItem={streetItem}
@@ -70,7 +73,6 @@ export const MainContentItem = ({ reviewItem, streetItem }: contentItem) => {
             <BoardItemDetail
               streetItem={streetItem}
               reviewItem={reviewItem}
-              onClose={handleOnClose}
             />
           )}
         </div>
