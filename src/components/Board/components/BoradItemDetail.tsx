@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { ImageModal } from "src/components/Atom/ImageModal/ImageModal";
 import { BackgroundImg } from "src/components/Atom/backgroundImg/BackgroundImg";
 import CommentBox from "src/components/Atom/commentBox/CommentBox";
+import DeleteModal from "src/components/Atom/customModal/deleteModal/DeleteModal";
+import ReportModal from "src/components/Atom/customModal/reportModal/ReportModal";
 import { Text } from "src/components/Atom/text/Text";
 import { IMAGES } from "src/constants/images";
 import { StoreState } from "src/constants/interface";
@@ -11,19 +13,26 @@ import useGetCommentList from "src/hook/useGetCommentList";
 import { contentItem } from "./BoardItem";
 import "./BoardItemDetail.css";
 
-const BoardItemDetail = ({ streetItem, reviewItem, onClose }: contentItem) => {
+const BoardItemDetail = ({ streetItem, reviewItem }: contentItem) => {
   const [comment, setComment] = useState<string>("");
   const { commentList, getCommentList } = useGetCommentList(
     reviewItem.reviewId
   );
   const { fetchComment } = useFetchComment();
   const { coordinates } = useSelector((state: StoreState) => state.map); //현재위치 정보
-
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const MyEamil = localStorage.getItem("userEmail");
+  const Writer = reviewItem.member.email === MyEamil;
   useEffect(() => {
     getCommentList(reviewItem.reviewId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const hanldeOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
   const handleFetchCommentData = async () => {
     const commentItem = {
       reviewId: reviewItem.reviewId,
@@ -68,12 +77,25 @@ const BoardItemDetail = ({ streetItem, reviewItem, onClose }: contentItem) => {
                 좋아요 {reviewItem.likey}
               </Text>
             </div>
-            <img
-              onClick={onClose}
-              src={IMAGES.report}
-              alt="report"
-              className="board-item-detail-user-info-mid-box-report"
-            />
+            <>
+              {Writer ? (
+                <div
+                  className="board-item-detail-user-info-mid-box-delet"
+                  onClick={hanldeOpenModal}
+                >
+                  <Text color="#fff" fontSize="0.75rem" fontWeight="700">
+                    삭제
+                  </Text>
+                </div>
+              ) : (
+                <img
+                  src={IMAGES.report}
+                  alt="report"
+                    className="board-item-detail-user-info-mid-box-report"
+                    onClick={hanldeOpenModal}
+                />
+              )}
+            </>
           </div>
           <div className="board-item-detail-content-box">
             {/* 내용 */}
@@ -127,6 +149,20 @@ const BoardItemDetail = ({ streetItem, reviewItem, onClose }: contentItem) => {
           </div>
         </div>
       </div>
+      {openModal &&
+        (Writer ? (
+          <DeleteModal
+            target="리뷰"
+            targetId={reviewItem.reviewId}
+            onClose={handleCloseModal}
+          />
+        ) : (
+          <ReportModal
+            target="리뷰"
+            targetId={reviewItem.reviewId}
+            onClose={handleCloseModal}
+          />
+        ))}
     </section>
   );
 };

@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import { IMAGES } from "src/constants/images";
 import { Coordinates, Tag } from "src/constants/interface";
 import { useFetchReview } from "src/hook/useFetchReview";
 import useFetchStreet from "src/hook/useFetchStreet";
+import { swipeStateCloseAction } from "src/store/swipeState/swipeStateAction";
 import { MappingImgItem } from "../mappingImgItem/MappingImgItem";
 import { Text } from "../text/Text";
 import "./WriteModal.css";
@@ -19,6 +21,10 @@ const WriteModal: FC<WriteModalProps> = ({
   onClose,
 }) => {
   const writeType = writeTypeProp === "REVIEW" ? "리뷰" : "거리";
+  const dispatch = useDispatch();
+  const handleClose = () => {
+    dispatch(swipeStateCloseAction());
+  };
   const { writeReview } = useFetchReview();
   const { writeStreet } = useFetchStreet();
   const [uploadTitle, setUpladTitle] = useState<string>("");
@@ -53,6 +59,7 @@ const WriteModal: FC<WriteModalProps> = ({
         console.error("거리 작성 실패:", error);
       }
     }
+    handleClose();
     onClose();
   };
   const handleImageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

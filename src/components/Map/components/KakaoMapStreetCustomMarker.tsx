@@ -1,32 +1,36 @@
-import { useState } from "react";
 import { CustomOverlayMap, MapMarker } from "react-kakao-maps-sdk";
+import { useDispatch, useSelector } from "react-redux";
 import { Text } from "src/components/Atom/text/Text";
 import MainSwipeContent from "src/components/Main/components/MainSwipe";
+import { RootState } from "src/store/rootReducer";
+import {
+  swipeStateCloseAction,
+  swipeStateOpenAction,
+} from "src/store/swipeState/swipeStateAction";
 import { IMAGES } from "../../../constants/images";
 import { RequestStreetData } from "../../../constants/interface";
 import "./KakaoMapStreetCustomMarker.css";
 interface KakaoMapCustomOverlayProps {
   item: RequestStreetData;
-  selectedMarker: RequestStreetData | null;
   onClick: () => void;
-  onClose: () => void;
 }
 
 export const KakaoMapStreetCustomMarker = ({
   item,
-  selectedMarker,
   onClick,
-  onClose,
 }: KakaoMapCustomOverlayProps) => {
-  const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const { isSwipe } = useSelector((state: RootState) => state.swipe);
+  const { selectItemList } = useSelector(
+    (state: RootState) => state.selectedMarker
+  );
   const handleOpenStreetRivewList = () => {
-    setIsOpenSideBar((prer) => !prer);
-    console.log("dkddkd");
+    if (!isSwipe) dispatch(swipeStateOpenAction());
+    else dispatch(swipeStateCloseAction());
   };
   const bottomSwipeStyle: React.CSSProperties = {
-    opacity: isOpenSideBar ? 1 : 0,
+    opacity: isSwipe ? 1 : 0,
     transition: "opacity 0.1s ease",
-    // display: isOpenSideBar ? "block" : "none",
   };
   return (
     <>
@@ -37,20 +41,20 @@ export const KakaoMapStreetCustomMarker = ({
           src:
             item.photoList?.[0] ??
             "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // null | undefined방지
-            size: { width: 24, height: 35 },
+          size: { width: 24, height: 35 },
         }}
         zIndex={1}
         clickable={true}
         onClick={onClick} // 클릭 이벤트 핸들러 등록
       />
-      {selectedMarker === item && (
+      {selectItemList === item && (
         <CustomOverlayMap
           position={{ lat: item.x, lng: item.y }}
           clickable={true}
         >
           <div className="custom-overlay-box">
             {/* 커스텀 오버레이 내용 */}
-            <div onClick={onClose}>
+            <div >
               <Text
                 color="#89bbf1"
                 fontSize="1rem"
@@ -98,11 +102,12 @@ export const KakaoMapStreetCustomMarker = ({
         </CustomOverlayMap>
       )}
       <div style={bottomSwipeStyle}>
-        <MainSwipeContent
-          item={item}
-          isOpenSideBar={isOpenSideBar}
-          handleIsOpenSideBar={handleOpenStreetRivewList}
-        />
+        {selectItemList && (
+          <MainSwipeContent
+            item={selectItemList}
+            handleIsOpenSideBar={handleOpenStreetRivewList}
+          />
+        )}
       </div>
     </>
   );
